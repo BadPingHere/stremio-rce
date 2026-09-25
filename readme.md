@@ -1,5 +1,4 @@
- # Stremio Vulnerbilities
----
+# Stremio Vulnerbilities
 
 This repo contains all of the vulnerbilities I have found inside of the [Stremio](https://www.stremio.com/) ecosystem.
 
