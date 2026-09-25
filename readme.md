@@ -1,10 +1,14 @@
-# Proof of Concept for Stremio RCE
+ # Stremio Vulnerbilities
+---
 
-This repository is a proof-of-concept for Remote Code Exection in Stremio Shell Newgen, fixed in [pull request #90](https://github.com/Stremio/stremio-shell-ng/pull/90). It uses Cross-Site Scripting to escalate to RCE.
+This repo contains all of the vulnerbilities I have found inside of the [Stremio](https://www.stremio.com/) ecosystem.
 
-Url-creator.js - This script will generate a stremio:// deeplink that will link directly to a custom Video Player. Once opened, it will execute its payload. There are 4 options, using 3 bugs. 'External' uses the fact that open-external does not properly validate the urls given, allowing for simple code execution. Option 'vlc' and 'potplayer' work the same, however are in play-external, rather than open-external. 'unc' uses a untested window.open payload to download and run a file from a webdav server.
+## 08-28
+This release contains a 0-click deeplink RCE, due to players allowing abritrary iframes in the link, and a vulnerbilitiy in play-external + other similiar features to leverage it to RCE.
 
-If you are a user, I reccomemend making sure you are on shell verison 5.0.24 or above, available to check via the settings menu in Stremio.
+**Reported**: 07-25  
+**Fix made**: [IFrame Fix](https://github.com/Stremio/stremio-video/pull/162) 07-27, [RCE Fix](https://github.com/Stremio/stremio-shell-ng/pull/90) 07-27   
+**Release**: [Tech Update #83](https://blog.stremio.com/stremio-tech-update-83-stremio-v5-stremio-web-updated/) 07-27
 
 ---
 
