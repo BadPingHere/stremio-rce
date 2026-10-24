@@ -1,0 +1,12 @@
+{
+  "id": "poc.xss",
+  "version": "1.0.0",
+  "name": "POC Addon",
+  "description": "Uses a meta link to get an attacker origin in-frame. Also uses the arbitrary write bug.",
+  "resources": ["catalog", "meta"],
+  "types": ["movie"],
+  "idPrefixes": ["poc-xss"],
+  "catalogs": [
+    { "type": "movie", "id": "poc-xss", "name": "XSS PoC" }
+  ]
+}

