@@ -17,10 +17,10 @@ This release contains an arbitrary origin in-frame, allowing attacker-controlled
 **Release**: [Tech Update #85](https://blog.stremio.com/stremio-tech-update-85-stremio-desktop-and-stremio-web-update/) 09-23  
 
 # 11-22
-This release contains a drive-by techinque of RCE & Write via a malicious webpage due to the streaming server proxy rendering attacker-controlled html on the localhost page. This also includes a 1-click arbitrary write, where visiting a malicious player link, as a deeplink or https url, wrote attacker-controlled data to the user's disk.
-**Reported**: Casting RCE 09-20, Proxy issue & hlsv2 write 10-16
-**Fix made**: [RCE, Proxy, hlsv2](https://github.com/Stremio/stremio-shell-ng/commit/a35a4e84b2197f5f434a28ce08e64280ce73bae3) 10-19
-**Release**: [Tech Update #86](https://blog.stremio.com/stremio-tech-update-86-stremio-update-for-macos-and-ios/) 10-22
+This release contains a drive-by techinque of RCE & Write via a malicious webpage due to the streaming server proxy rendering attacker-controlled html on the localhost page. This also includes a 1-click arbitrary write, where visiting a malicious player link, as a deeplink or https url, wrote attacker-controlled data to the user's disk.  
+**Reported**: Casting RCE 09-20, Proxy issue & hlsv2 write 10-16  
+**Fix made**: [RCE, Proxy, hlsv2](https://github.com/Stremio/stremio-shell-ng/commit/a35a4e84b2197f5f434a28ce08e64280ce73bae3) 10-19  
+**Release**: [Tech Update #86](https://blog.stremio.com/stremio-tech-update-86-stremio-update-for-macos-and-ios/) 10-22  
 
 ---
 
